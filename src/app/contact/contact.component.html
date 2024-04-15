@@ -1,1 +1,74 @@
-<p>contact works!</p>
+<form class="container" [formGroup]="formContacto" (ngSubmit)="enviar()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      [ngClass]="{
+        'is-invalid':
+          hasErrors('name', 'required') || hasErrors('name', 'minlength')
+      }"
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+    />
+    <div *ngIf="hasErrors('name', 'required')" class="text-danger">
+      Required Name.
+    </div>
+    <div *ngIf="hasErrors('name', 'minlength')" class="text-danger">
+      Name requires minium 3 characters.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="name" class="form-label">Last Name</label>
+    <input
+      [ngClass]="{
+        'is-invalid':
+          hasErrors('lastName', 'required') ||
+          hasErrors('lastName', 'minlength')
+      }"
+      type="text"
+      class="form-control"
+      id="lastName"
+      formControlName="lastName"
+    />
+    <div *ngIf="hasErrors('lastName', 'required')" class="text-danger">
+      Required Lastname.
+    </div>
+    <div *ngIf="hasErrors('lastName', 'minlength')" class="text-danger">
+      Lastname requires minium 3 characters.
+    </div>
+  </div>
+  <div class="mb-3">
+    
+    <label for="tipoDni">Tipo de DNI:</label>
+    <select class="form-select" id="tipoDni" formControlName="tipoDni">
+      <option value="DNI">DNI</option>
+      <option value="Pasaporte">Pasaporte</option>
+      <option value="Cédula">Cédula</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <dni-input [tipoDni]="tipoDni" />
+    
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      [ngClass]="{
+        'is-invalid':
+          hasErrors('email', 'required') || hasErrors('email', 'email')
+      }"
+      type="email"
+      class="form-control"
+      id="email"
+      formControlName="email"
+    />
+    <div *ngIf="hasErrors('email', 'email')" class="text-danger">
+      Invalid Email.
+    </div>
+    <div *ngIf="hasErrors('email', 'required')" class="text-danger">
+      Required Email.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

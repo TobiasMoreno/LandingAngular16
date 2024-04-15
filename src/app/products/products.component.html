@@ -1,39 +1,29 @@
-<h1>Cleaning Products</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Price</th>
-      <th scope="col">Detail</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Lavandina</td>
-      <td>$10</td>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        [routerLink]="['/products','red', 'Lavandina']"
-      >
-        Detail
-      </button>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Detergente</td>
-      <td>$5</td>
-      <button type="button" class="btn btn-outline-primary"
-      [routerLink]="['/products','yellow','Detergente']">Detail</button>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Limpia Vidrios</td>
-      <td>$7</td>
-      <button type="button" class="btn btn-outline-primary"
-      [routerLink]="['/products','green','LimpiaVidrios']">Detail</button>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <h1>List of Products</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col" class="ml-3">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productsList">
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.title }}</td>
+        <td [ngClass]="{ 'red-color': product.price > 50 }">
+          {{ product.price | currency }}
+        </td>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          [routerLink]="['/products', product.id]"
+        >
+          View Details
+        </button>
+      </tr>
+    </tbody>
+  </table>
+</div>
